@@ -1,14 +1,15 @@
-FROM ghcr.io/astral-sh/uv:0.5.24-debian-slim
+FROM ghcr.io/astral-sh/uv:python3.14-alpine
 
 ENV UV_COMPILE_BYTECODE=1 PYTHONUNBUFFERED=1
+ENV UV_PROJECT_ENVIRONMENT=/backend_app/.venv
 
-WORKDIR /app
+WORKDIR /backend_app
 
-ENV PATH="/app/.venv/bin:$PATH"
+ENV PATH="/backend_app/.venv/bin:$PATH"
 
 COPY pyproject.toml uv.lock ./
 RUN uv sync --frozen --no-install-project
 
 COPY . .
-CMD ["uv", "run", "python", "app.py"]
+CMD ["tail", "-f", "/dev/null"]
 

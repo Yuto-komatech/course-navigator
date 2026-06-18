@@ -1,0 +1,23 @@
+# Local Virtual Environment (Docker builds its own)
+.venv/
+
+# Python Cache
+__pycache__/
+*.py[cod]
+*$py.class
+
+# UV Cache
+.uv/
+
+# Git metadata
+.git/
+.gitignore
+
+# Docker configurations (not needed inside container)
+Dockerfile
+.dockerignore
+
+# IDE and system files
+.vscode/
+.idea/
+.DS_Store
