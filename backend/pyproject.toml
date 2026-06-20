@@ -8,4 +8,5 @@ dependencies = [
     "fastapi[standard]>=0.137.0,<0.138.0",
     "pydantic>=2.13.0,<3.0.0",
     "asyncpg>=0.30.0,<0.31.0",
+    "neo4j>=5.28.0,<6.0.0",
 ]

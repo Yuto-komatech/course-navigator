@@ -4,6 +4,7 @@ import reactLogo from './assets/react.svg'
 import viteLogo from './assets/vite.svg'
 import heroImg from './assets/hero.png'
 import PostgresTest from './components/PostgresTest'
+import Neo4jTest from './components/Neo4jTest'
 import './App.css'
 
 function App() {
@@ -27,17 +28,7 @@ function App() {
         <Routes>
           <Route path="/" element={<WelcomeScreen />} />
           <Route path="/test1" element={<PostgresTest />} />
-          <Route
-            path="/test2"
-            element={
-              <div style={{ padding: '3rem', textAlign: 'left' }}>
-                <h1 style={{ color: 'var(--text-h)' }}>Neo4j Communication Test (Future)</h1>
-                <p style={{ color: 'var(--text)' }}>
-                  GraphDB (Neo4j) との疎通確認テスト画面（準備中）
-                </p>
-              </div>
-            }
-          />
+          <Route path="/test2" element={<Neo4jTest />} />
           <Route
             path="/test3"
             element={
