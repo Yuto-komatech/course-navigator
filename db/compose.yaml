@@ -37,6 +37,19 @@ services:
       - neo4j_plugins:/plugins
     networks:
       - gateway
+    labels:
+      - "traefik.enable=true"
+      # /browser 自体の通常ルーティング
+      - "traefik.http.routers.neo4j.rule=Host(`${DOMAIN}`) && PathPrefix(`/browser`)"
+      - "traefik.http.routers.neo4j.entrypoints=web"
+      - "traefik.http.services.neo4j.loadbalancer.server.port=7474"
+      
+      # /neo4j へのアクセスを /browser/ にリダイレクトする設定
+      - "traefik.http.routers.neo4j-redirect.rule=Host(`${DOMAIN}`) && (Path(`/neo4j`) || PathPrefix(`/neo4j/`))"
+      - "traefik.http.routers.neo4j-redirect.entrypoints=web"
+      - "traefik.http.routers.neo4j-redirect.middlewares=neo4j-redirect-url"
+      - "traefik.http.middlewares.neo4j-redirect-url.redirectregex.regex=^http://([^/]+)/neo4j(.*)$$"
+      - "traefik.http.middlewares.neo4j-redirect-url.redirectregex.replacement=http://$$1/browser/"
 
 volumes:
   postgres_data:
