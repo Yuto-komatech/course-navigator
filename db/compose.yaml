@@ -1,7 +1,7 @@
 services:
   postgres:
     build:
-      context: ./postgresql
+      context: ./postgres
       dockerfile: Dockerfile
     container_name: postgres
     restart: always
